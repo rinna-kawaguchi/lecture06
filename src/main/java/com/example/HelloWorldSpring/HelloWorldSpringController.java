@@ -7,13 +7,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HelloWorldSpringController {
     @GetMapping("/hello")
-    public String hello(@RequestParam(value = "country", defaultValue = " ") String country){
-        return switch (country) {
-            case "japan" -> country + "：こんにちは!";
-            case "us" -> country + "：Hello!";
-            case "france" -> country + "：Bonjour!";
-            case "korea" -> country + "：안녕하세요!";
-            default -> "こんにちは！";
-        };
+    public Greeting hello(@RequestParam(value = "country", defaultValue = "") String country){
+        Greeting greeting = new Greeting();
+        greeting.setCountry(country);
+        switch (country) {
+            case "japan" -> greeting.setMessage("こんにちは!");
+            case "us" -> greeting.setMessage("Hello!");
+            case "france" -> greeting.setMessage("Bonjour!");
+            case "korea" -> greeting.setMessage("안녕하세요!");
+            default -> greeting.setMessage("こんにちは!");
+        }
+        return greeting;
     }
 }
