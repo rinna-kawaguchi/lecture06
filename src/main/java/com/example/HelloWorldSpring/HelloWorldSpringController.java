@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HelloWorldSpringController {
     @GetMapping("/hello")
-    public Greeting hello(@RequestParam(value = "country", defaultValue = "") String country){
+    public Greeting hello(@RequestParam(value = "country", defaultValue = "japan") String country){
         Greeting greeting = new Greeting();
         greeting.setCountry(country);
         switch (country) {
